@@ -1050,10 +1050,10 @@ footer {
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  nav { padding: 16px 20px; }
+  nav { padding: 16px 20px; position: relative; justify-content: center; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
-  .hamburger { display: flex; }
+  .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
 
   #hero { padding: 110px 20px 60px; }
 
@@ -1102,7 +1102,7 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">LUCENT<span>.</span></a>
+  <a href="#hero" class="nav-logo">Lucent<span> Robotics</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#technology">Technology</a></li>
@@ -1403,7 +1403,7 @@ footer {
 <!-- FOOTER -->
 <div class="accent-bar"></div>
 <footer>
-  <div class="footer-logo">LUCENT<span>.</span></div>
+  <div class="footer-logo">Lucent<span> Robotics</span></div>
   <div class="footer-tagline">Autonomous Assembly Systems</div>
   <div class="footer-usg">A Umanah Systems Group Program</div>
   <div class="footer-copy">© 2026 Lucent Robotics &nbsp;·&nbsp; v1_2026</div>
