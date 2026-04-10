@@ -1387,8 +1387,7 @@ footer {
       </div>
     </div>
 
-    <form class="contact-form reveal" action="https://formspree.io/f/xeelnkqj" method="POST">
-      <input type="hidden" name="_next" value="https://lucent-robotics.vercel.app/thanks.html">
+    <form class="contact-form reveal" id="contactForm">
       <div class="form-field">
         <label class="form-label">Full Name</label>
         <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
@@ -1417,7 +1416,7 @@ footer {
         <textarea name="message" rows="5" placeholder="Tell us what you are working on and what you need." required></textarea>
       </div>
       <div class="form-submit">
-        <button type="submit">Send Message →</button>
+        <button type="submit" id="submitBtn">Send Message →</button>
       </div>
     </form>
   </div>
@@ -1523,6 +1522,38 @@ document.querySelectorAll('.tech-specs, .tech-capabilities').forEach(el => {
   specObserver.observe(el);
 });
 
+
+/* ── CONTACT FORM — FORMSPREE FETCH ── */
+const contactForm = document.getElementById('contactForm');
+const submitBtn   = document.getElementById('submitBtn');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('https://formspree.io/f/xeelnkqj', {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        window.location.href = '/thanks.html';
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+        alert('Something went wrong. Please try again or email us directly.');
+      }
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message →';
+      alert('Network error. Please check your connection and try again.');
+    }
+  });
+}
 /* ── NAV SHRINK ON SCROLL ── */
 window.addEventListener('scroll', () => {
   const nav = document.querySelector('nav');
