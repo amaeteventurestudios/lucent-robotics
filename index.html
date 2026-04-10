@@ -379,6 +379,7 @@ nav {
   line-height: 1.7;
   margin-bottom: 48px;
   font-weight: 300;
+  text-align: center;
   animation: fadeUp 0.8s ease 0.5s both;
 }
 .hero-sub strong { color: var(--white); font-weight: 500; }
@@ -955,7 +956,9 @@ h2.section-title .acc { color: var(--accent); }
 }
 .form-field select option { background: var(--card); color: var(--white); }
 .form-field input::placeholder,
-.form-field textarea::placeholder { color: var(--muted); }
+.form-field textarea::placeholder { color: rgba(239,240,240,0.55); }
+.form-field select { color: var(--white); }
+.form-field select option { color: var(--white); }
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus {
@@ -1026,6 +1029,19 @@ footer {
   color: var(--accent);
   text-transform: uppercase;
 }
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+
 .footer-copy {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
@@ -1128,14 +1144,17 @@ footer {
 <section id="hero">
   <div class="hero-bg-text">BUILD</div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Lucent Robotics — Autonomous Assembly Systems</div>
+    <div class="hero-eyebrow">Autonomous Assembly Systems</div>
     <h1 class="hero-headline">
       WE BUILD<br>
       <span class="line-accent">WHAT HUMANS</span><br>
-      CANNOT.
+      CANNOT
     </h1>
     <p class="hero-sub">
-      Modular robotic assembly teams that construct structures autonomously, in orbit and on Earth. <strong>No constant human oversight. No single point of failure. No limits on where we build.</strong>
+      Modular robotic assembly teams that construct structures autonomously, in orbit and on Earth.<br>
+      No constant human oversight.<br>
+      No single point of failure.<br>
+      No limits on where we build.
     </p>
     <div class="hero-actions">
       <a href="#applications" class="btn-primary">See Applications</a>
@@ -1258,7 +1277,7 @@ footer {
 <section id="applications" class="section">
   <div class="section-inner">
     <div class="section-label reveal">Applications</div>
-    <h2 class="section-title reveal">WHERE<br>WE <span class="acc">BUILD.</span></h2>
+    <h2 class="section-title reveal">WHERE<br>WE <span class="acc">BUILD</span></h2>
     <p class="section-body reveal">Space validates the platform. Earth scales the business. Lucent Robotics targets every environment where humans cannot safely, efficiently, or economically build at the precision and scale required.</p>
 
     <div class="env-tabs reveal">
@@ -1289,6 +1308,16 @@ footer {
             <div class="app-title">Refueling + Logistics Infrastructure</div>
             <p class="app-desc">Framework assembly for orbital refueling stations, logistics carriers, and external platform integration. Charged per structure, per mission, per deployment.</p>
           </div>
+          <div class="app-card">
+            <div class="app-num">05</div>
+            <div class="app-title">On-Orbit Servicing + Repair</div>
+            <p class="app-desc">Active servicing, repair, and upgrades of existing satellites and orbital platforms without human presence. Extends mission life and protects existing infrastructure investment.</p>
+          </div>
+          <div class="app-card">
+            <div class="app-num">06</div>
+            <div class="app-title">In-Space Manufacturing Support</div>
+            <p class="app-desc">Structural scaffolding and assembly support for orbital manufacturing operations. Builds and maintains the industrial frameworks that in-space production runs inside of — distinct from habitat construction.</p>
+          </div>
         </div>
       </div>
 
@@ -1318,6 +1347,11 @@ footer {
             <div class="app-num">05</div>
             <div class="app-title">Precision Industrial Assembly</div>
             <p class="app-desc">Automotive, aerospace, and defense manufacturing. Large structure assembly with simultaneous long-reach and short-reach precision, a capability existing industrial robots cannot deliver.</p>
+          </div>
+          <div class="app-card">
+            <div class="app-num">06</div>
+            <div class="app-title">Mining + Resource Extraction</div>
+            <p class="app-desc">Autonomous structural assembly in underground mines, deep excavation sites, and offshore extraction platforms. Eliminates human exposure in the most dangerous construction environments on Earth while maintaining build precision and operational continuity.</p>
           </div>
         </div>
       </div>
@@ -1353,22 +1387,22 @@ footer {
       </div>
     </div>
 
-    <div class="contact-form reveal">
+    <form class="contact-form reveal" action="https://formspree.io/f/xeelnkqj" method="POST">
       <div class="form-field">
         <label class="form-label">Full Name</label>
-        <input type="text" placeholder="Your name" autocomplete="name">
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
       </div>
       <div class="form-field">
         <label class="form-label">Organization</label>
-        <input type="text" placeholder="Company or institution" autocomplete="organization">
+        <input type="text" name="organization" placeholder="Company or institution" autocomplete="organization">
       </div>
       <div class="form-field">
         <label class="form-label">Email Address</label>
-        <input type="email" placeholder="your@email.com" autocomplete="email">
+        <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
       </div>
       <div class="form-field">
         <label class="form-label">Inquiry Type</label>
-        <select>
+        <select name="inquiry_type" required>
           <option value="" disabled selected>Select one</option>
           <option>Implementation Partnership</option>
           <option>Investment Inquiry</option>
@@ -1379,12 +1413,12 @@ footer {
       </div>
       <div class="form-field">
         <label class="form-label">Message</label>
-        <textarea rows="5" placeholder="Tell us what you are working on and what you need."></textarea>
+        <textarea name="message" rows="5" placeholder="Tell us what you are working on and what you need." required></textarea>
       </div>
       <div class="form-submit">
         <button type="submit">Send Message →</button>
       </div>
-    </div>
+    </form>
   </div>
 </section>
 
@@ -1394,7 +1428,12 @@ footer {
   <div class="footer-logo">Lucent<span> Robotics</span></div>
   <div class="footer-tagline">Autonomous Assembly Systems</div>
   <div class="footer-usg">A Umanah Systems Group Program</div>
-  <div class="footer-copy">© 2026 Lucent Robotics &nbsp;·&nbsp; v1_2026</div>
+  <div class="footer-links">
+    <a href="/privacy.html">Privacy Policy</a>
+    <span>·</span>
+    <a href="/terms.html">Terms of Use</a>
+  </div>
+  <div class="footer-copy">© Lucent Robotics. All rights reserved.</div>
 </footer>
 
 <script>
