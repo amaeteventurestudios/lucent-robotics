@@ -18,15 +18,30 @@
   --body:    #8A9AB8;
   --white:   #EFF0F0;
   --accent:  #C8F542;
+  --outer-background: var(--steel);
+  --page-wrap-border: var(--rule);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
-  background: var(--black);
+  background: var(--outer-background);
   color: var(--white);
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   line-height: 1.7;
+  overflow-x: hidden;
+}
+.page-wrap {
+  position: relative;
+  max-width: 1080px;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--black);
+  box-shadow: 0 0 120px rgba(0,0,0,0.4);
+  border-left: 1px solid var(--page-wrap-border);
+  border-right: 1px solid var(--page-wrap-border);
 }
 body::after {
   content: '';
@@ -41,12 +56,20 @@ nav {
   top: 0; left: 0; right: 0;
   z-index: 500;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 48px;
+  justify-content: center;
+  padding: 0;
   background: rgba(7,9,13,0.95);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--rule);
+}
+.nav-inner {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  position: relative;
 }
 .nav-logo {
   font-family: 'Bebas Neue', sans-serif;
@@ -166,15 +189,19 @@ footer {
 .footer-links a:hover { color: var(--accent); }
 
 @media (max-width: 768px) {
-  nav { padding: 16px 20px; }
+  nav { padding: 0; }
+  .nav-inner { padding: 16px 20px; }
   main { padding: 110px 20px 60px; }
 }
 </style>
 </head>
 <body>
+<div class="page-wrap">
 <nav>
-  <a href="/" class="nav-logo">Lucent<span> Robotics</span></a>
-  <a href="/" class="nav-back">← Back</a>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Lucent<span> Robotics</span></a>
+    <a href="/" class="nav-back">← Back</a>
+  </div>
 </nav>
 
 <main>
@@ -236,5 +263,6 @@ footer {
   </div>
   <div class="footer-copy">© Lucent Robotics. All rights reserved.</div>
 </footer>
+</div>
 </body>
 </html>
